@@ -1,4 +1,4 @@
-package drawing
+package ru.levgrekov.drawing
 
 import androidx.compose.ui.graphics.drawscope.DrawScope
 

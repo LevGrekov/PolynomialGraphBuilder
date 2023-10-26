@@ -1,4 +1,4 @@
-package drawing.convertation
+package ru.levgrekov.drawing.convertation
 
 object Converter {
     fun xCrt2Scr(x: Double, p: Plane) =

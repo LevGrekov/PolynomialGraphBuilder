@@ -1,14 +1,12 @@
-package drawing.math
+package ru.levgrekov.drawing.convertation
 
-import drawing.convertation.Plane
-import java.lang.Math.pow
 import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
 
 object Stepic {
-    private fun getMagnitude(number: Double): Double =
+    fun getMagnitude(number: Double): Double =
         10.0.pow(floor(log10(abs(number))))
 
     fun getStepNotWorking(plane: Plane): Double {
@@ -23,7 +21,7 @@ object Stepic {
         }
     }
     fun getStep(delta:Double): Int {
-        val mg = Stepic.getMagnitude(delta)
+        val mg = getMagnitude(delta)
         val a = when (delta) {
             in 28.0..56.0 -> 2 //1
             in 56.0..140.0 -> 5 //2

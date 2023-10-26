@@ -1,4 +1,4 @@
-package drawing.math
+package ru.levgrekov.drawing.math
 
 import kotlin.math.abs
 import kotlin.math.max
@@ -12,8 +12,17 @@ fun Double.neq(other: Double, eps: Double) = !this.eq(other, eps)
 
 infix fun Double.neq(other: Double) = !this.eq(other)
 
-infix fun Double.mod(other: Double) = this.rem(other)
+fun factorial(n: Int): Int {
+    var result = 1
+    for (i in 1..n) {
+        result *= i
+    }
+    return result
+}
 
-infix fun Double.modEq(other: Double) = abs(this.rem(other)) < max(ulp, other.ulp) * 10.0
+fun calculateDerivativeAtPoint(
+    f: (Double) -> Double,
+    x: Double,
+    h: Double = 1e-5): Double
+        = (f(x + h) - f(x - h)) / (2 * h)
 
-fun Double.modNeq(other: Double) = !this.modEq(other)
