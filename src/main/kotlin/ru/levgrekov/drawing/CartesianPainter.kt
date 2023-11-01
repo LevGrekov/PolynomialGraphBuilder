@@ -59,7 +59,12 @@ open class CartesianPainter(val showGrid: Boolean) : Painter {
                     val xPos = Converter.xCrt2Scr(x, it)
                     val tl = TextLine.make(df.format(x),font)
                     if(xPos > tl.width && xPos < it.width - tl.width){
-                        drawLabel(scope,tl,xPos,y0, TextAlign.Justify)
+                        if(y0 == 0f){
+                            drawLabel(scope,tl,xPos,0f, TextAlign.Center)
+                        }
+                        else{
+                            drawLabel(scope,tl,xPos,y0, TextAlign.Justify)
+                        }
                     }
                 }
                 x+=stepX
@@ -67,8 +72,14 @@ open class CartesianPainter(val showGrid: Boolean) : Painter {
             while (y < it.yMax){
                 val yPos = Converter.yCrt2Scr(y, it)
                 val tl = TextLine.make(df.format(y),font)
+                println("x0 = $x0 widht = ${it.width}")
                 if(yPos > tl.height && yPos < it.height - tl.height ){
-                    drawLabel(scope,tl,x0,yPos, TextAlign.Left)
+                    if(x0 == it.width){
+                        drawLabel(scope,tl,it.width,yPos,TextAlign.Right )
+                    }
+                    else{
+                        drawLabel(scope,tl,x0,yPos,TextAlign.Left )
+                    }
                 }
                 y+=stepY
             }
@@ -188,9 +199,14 @@ open class CartesianPainter(val showGrid: Boolean) : Painter {
                 TextAlign.Center, TextAlign.Justify -> textLine.width / 2f
                 else -> 0f
             }
+            var yOffset = 0f
+            if(yourTextAlign == TextAlign.Center){
+                yOffset = textLine.height
+            }
             val actualX = x - xOffset
+            val actualY = y + yOffset
 
-            canvas.nativeCanvas.drawTextLine(textLine, actualX, y, paint )
+            canvas.nativeCanvas.drawTextLine(textLine, actualX, actualY, paint )
 
         }
     }

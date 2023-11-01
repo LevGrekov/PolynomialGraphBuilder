@@ -166,7 +166,6 @@ fun appNewDesign(){
                             text = "Сетка",
                             modifier = Modifier.padding(2.dp)
                         )
-
                         Switch(
                             checked = showDerivative,
                             onCheckedChange = { showDerivative = it },
